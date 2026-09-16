@@ -60,11 +60,13 @@ Arduino ESP32 core 3.x, board `XIAO_ESP32S3`.
 
 - `firmware/` — Arduino sketches, one folder per stage.
   - `stage3_bringup/` — LED, serial round-trip, PSRAM check, push-to-talk button.
+  - `stage4_i2c_scan/` — I2C bus scan, confirms the OLED's address before drawing.
 
 ## Where the build is
 
-Stages 1 and 2 passed on the bench. Stage 3 (upload, serial, PSRAM, button) is
-in progress; stages 4–12 are queued. Measured so far: supply 5.46 V unloaded,
+Stages 1–3 passed on the bench. Stage 3 confirmed the toolchain, the serial
+round-trip and PSRAM reporting 8388608 bytes — the voice buffer in Stage 10
+depends on that. Stage 4 (the OLED) is in progress; stages 5–12 are queued. Measured so far: supply 5.46 V unloaded,
 polarity correct, no short; amp `SD` reads 0.478 V against 0.492 V predicted, so
 the clone matches Adafruit's schematic and the amp boots enabled in (L+R)/2 mode.
 Supply under load is not yet measured — that happens at Stage 6.
